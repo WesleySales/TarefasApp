@@ -5,7 +5,11 @@
 package views;
 
 import entities.TarefaDAO;
-import java.sql.DatabaseMetaData;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -17,6 +21,8 @@ public class telaInicial extends javax.swing.JFrame {
     
     public telaInicial() {
         initComponents();
+        configurarPlaceHolder(txtTituloTarefa, "Digite o titulo da tarefa");
+        configurarPlaceHolder(txtDescricaoTarefa, "Digite a descricao das tarefas");
         
     }
 
@@ -126,6 +132,51 @@ public class telaInicial extends javax.swing.JFrame {
         txtTituloTarefa.setText("");
         txtDescricaoTarefa.setText("");
     }
+    
+    public void configurarPlaceHolder(JTextField txt, String mensagem){
+        txt.setText(mensagem);
+        txt.setForeground(Color.GRAY);
+        
+        txt.addFocusListener(new FocusListener() {
+            
+            public void focusGained(FocusEvent e) {
+                if (txt.getText().equals(mensagem)) {
+                    txt.setText("");
+                    txt.setForeground(Color.BLACK); // Cor do texto normal
+                }
+            }
+            public void focusLost(FocusEvent e) {
+                if (txt.getText().isEmpty()) {
+                    txt.setText(mensagem);
+                    txt.setForeground(Color.GRAY); // Cor do placeholder
+                }
+            }
+        });
+        
+    }
+    
+    public void configurarPlaceHolder(JTextArea txt, String mensagem){
+        txt.setText(mensagem);
+        txt.setForeground(Color.GRAY);
+        
+        txt.addFocusListener(new FocusListener() {
+            
+            public void focusGained(FocusEvent e) {
+                if (txt.getText().equals(mensagem)) {
+                    txt.setText("");
+                    txt.setForeground(Color.BLACK); // Cor do texto normal
+                }
+            }
+            public void focusLost(FocusEvent e) {
+                if (txt.getText().isEmpty()) {
+                    txt.setText(mensagem);
+                    txt.setForeground(Color.GRAY); // Cor do placeholder
+                }
+            }
+        });
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
